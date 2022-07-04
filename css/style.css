@@ -3,3 +3,31 @@
     padding: 0;
     margin: 0;
 }
+
+body {
+    text-align: center;
+}
+
+#timer {
+    font-weight: bolder;
+    font-size: 9em;
+    margin: 2rem;
+}
+
+h3 {
+    font-size: 6rem;
+    margin-bottom: 4rem;
+}
+
+#number-container {
+    font-size: 5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* CLASSI DI SUPPORTO  */
+
+
+.hidden {
+    display: none;
+}

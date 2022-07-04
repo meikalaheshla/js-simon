@@ -17,21 +17,6 @@ const timerDisplay = document.getElementById('timer');
 const numberContainer = document.getElementById('number-container')
 
 
-// FUNZIONE TIMER
-
-let seconds = 20;
-timerDisplay.innerText = seconds;
-
-const countdown = setInterval(function () {
-    timerDisplay.innerText = --seconds;
-    if (seconds === 0) {
-        clearInterval(countdown);
-        timerDisplay.innerText = ''
-    }
-
-}, 1000)
-
-
 
 // CREO L'ARRAY CON I NUMERI RANDOM
 
@@ -56,6 +41,77 @@ function createNumbers(totalNumbers) {
 
 // INSERISCO I NUMERI RANDOM ALL' INTERNO DELL HTML
 
+
 const numbers = createNumbers(5);
+
+for (let i = 0; i < numbers.length; i++) {
+    let myH3 = `<h3> ${numbers[i]}</h3>`
+    numberContainer.innerHTML += myH3;
+
+}
+
+
+
 console.log(numbers);
+
+// FUNZIONE countdown
+
+let seconds = 30;
+timerDisplay.innerText = seconds;
+
+const countdown = setInterval(function () {
+    timerDisplay.innerText = --seconds;
+    if (seconds === 0) {
+        clearInterval(countdown);
+        timerDisplay.innerText = ''
+
+        // AL TERMINE DEL COUNTDOWN FACCIAMO SPARIRE I NUMERI
+
+        numberContainer.style.display = "none"
+    }
+
+}, 1000)
+
+
+// FUNZIONE COUNTDOWN PROMPT e GESTIONE RISULTATO
+
+// CREIAMO UNA VARIABILE PER IL PUNTEGGIO
+let userPoints = 0
+
+// SETTIAMO UN COUNTDOWN PER LA COMPARSA DEI PROMPT 
+
+const promptCountdown = setTimeout(function () {
+
+    // CREIAMO UN ARRAY CON I NUMERI INSERITI DALL'UTENTE
+
+    let userNumbers = []
+
+    // CREIAMO UNA VARIABILE PER GESTIRE IL MESSAGGIO DI FINE GIOCO 
+
+    let message = ``
+
+
+    for (let i = 0; i < numbers.length; i++) {
+        userNumber = parseInt(prompt(`inserisci un numero`,))
+        userNumbers.push(userNumber)
+
+        // VERIFICHIAMO SE I PROMPT SONO CORRETTI O MENO E SCRIVIAMO UN MESSAGGIO IN BASE A QUESTO
+
+        if (numbers.includes(userNumbers[i])) {
+            userPoints++
+            message += `${userNumbers[i]} è giusto, `
+        } else {
+            message += `${userNumbers[i]} è sbagliato, `
+        }
+    }
+
+    // FACCIAMO APPARIRE I RISULTATI ALL' UTENTE 
+
+    alert(`${message} e il tuo punteggio è di ${userPoints}/${numbers.length}`)
+    console.log(userPoints)
+    console.log(`${message} e il tuo punteggio è di ${userPoints}/${numbers.length}`)
+
+}, 30500);
+
+
 
